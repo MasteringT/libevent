@@ -89,7 +89,8 @@
 #define USING_TIMERFD
 #endif
 
-#ifdef EVENT__HAVE_WEPOLL
+//如果定义了EVENT__HAVE_WEPOLL，那么epoll的HANDLE是epoll_handle类型，并且用epoll_close，否则是int类型
+#ifdef EVENT__HAVE_WEPOLL   
 typedef HANDLE epoll_handle;
 #define INVALID_EPOLL_HANDLE NULL
 static void close_epoll_handle(HANDLE h) { epoll_close(h); }
@@ -100,8 +101,8 @@ static void close_epoll_handle(int h) { close(h); }
 #endif
 
 struct epollop {
-	struct epoll_event *events;
-	int nevents;
+	struct epoll_event *events; // epoll 数组
+	int nevents; // 事件数量
 	epoll_handle epfd;
 #ifdef USING_TIMERFD
 	int timerfd;
