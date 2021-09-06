@@ -2,7 +2,7 @@
 #define _STRLCPY_INTERNAL_H_
 
 #ifdef __cplusplus
-extern "C" {
+extern "C" { // 扩展，可使用C中函数
 #endif
 
 #ifdef HAVE_CONFIG_H
@@ -12,7 +12,7 @@ extern "C" {
 #ifndef HAVE_STRLCPY
 #include <string.h>
 size_t _event_strlcpy(char *dst, const char *src, size_t siz);
-#define strlcpy _event_strlcpy
+#define strlcpy _event_strlcpy  用自定义的_event_strlcpy替换C语言中自带的strlcpy
 #endif
 
 #ifdef __cplusplus
